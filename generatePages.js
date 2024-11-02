@@ -52,8 +52,8 @@ function generateHTML(project) {
     <h1 class="nav-parent-element">
         <div><h1 class="navAlign" style="white-space: nowrap; margin-top: -10px;">Vincent Hsu</h1></div>
         <div class="parent-element">
-            <button class="navAlign" style="margin-right: 10px;">Projects</button>
-            <button class="navAlign" style="margin-right: 3px;">About</button>
+            <button id="projectsButton" class="navAlign" style="margin-right: 10px;">Projects</button>
+            <button id="aboutButton" class="navAlign" style="margin-right: 3px;">About</button>
         </div>
     </h1>
     <hr style="margin-top: -10px; margin-bottom: -2px;">
@@ -64,6 +64,17 @@ function generateHTML(project) {
     <a href="../index.html">
         <button class="vButton">Back To Projects</button>
     </a>
+    <script>
+        const projectsButton = document.getElementById("projectsButton");
+        projectsButton.onclick = function() {
+            window.location.href = \`../index.html\`;
+        }
+
+        const aboutButton = document.getElementById("aboutButton");
+        aboutButton.onclick = function() {
+            window.location.href = \`../about.html\`;
+        }
+    </script>
 </body>
 </html>
     `;
