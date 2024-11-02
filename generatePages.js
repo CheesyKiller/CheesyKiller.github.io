@@ -46,11 +46,20 @@ function generateHTML(project) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${project.title}</title>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../main-style.css">
 </head>
 <body>
+    <h1 class="nav-parent-element">
+        <div><h1 class="navAlign" style="white-space: nowrap; margin-top: -10px;">Vincent Hsu</h1></div>
+        <div class="parent-element">
+            <button class="navAlign" style="margin-right: 10px;">Projects</button>
+            <button class="navAlign" style="margin-right: 3px;">About</button>
+        </div>
+    </h1>
+    <hr style="margin-top: -10px; margin-bottom: -2px;">
     <h1>${project.title}</h1>
     <hr>
+
     <p>${project.description}</p>
     <a href="../index.html">
         <button class="vButton">Back To Projects</button>
