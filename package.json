@@ -2,10 +2,6 @@
   "name": "cheesykiller.github.io",
   "version": "1.0.0",
   "description": "My static website",
-  "main": "index.js",
-  "scripts": {
-    "test": "Helper_Scripts/test.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CheesyKiller/CheesyKiller.github.io.git"
@@ -20,8 +16,12 @@
   },
   "homepage": "https://github.com/CheesyKiller/CheesyKiller.github.io#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mongoose": "^8.8.0"
+  },
+  "scripts": {
+    "build": "node generatePages.js"
   }
 }

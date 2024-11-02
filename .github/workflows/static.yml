@@ -34,14 +34,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Run the generatePages.js script to build the HTML files
+      - name: Build project
+        run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload all files in the root directory
-          path: '.'
+          # Specify the directory containing generated HTML files
+          path: './generated-pages'
 
       - name: Deploy to GitHub Pages
         id: deployment

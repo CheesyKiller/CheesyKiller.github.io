@@ -1,0 +1,21 @@
+{
+    "projects": [
+      {
+        "title": "Heat Convection of Resistors in Liquid Nitrogen",
+        "description": "A study on heat convection in resistors immersed in liquid nitrogen."
+      },
+      {
+        "title": "Resistivity of Polyethylene",
+        "description": "Exploring the resistivity properties of polyethylene materials."
+      },
+      {
+        "title": "ARISER Simulation",
+        "description": "A simulation project using ARISER software."
+      },
+      {
+        "title": "TPB Deposition",
+        "description": "A research project on TPB deposition methods."
+      }
+    ]
+  }
+  

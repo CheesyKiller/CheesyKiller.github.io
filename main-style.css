@@ -1,0 +1,32 @@
+.vButton {
+    width: 50%;
+    background-color: #f0f0f0;
+    border-color: #000000;
+    font-size: 32px;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 5px;
+    border-style: solid;
+    color: #0F3489;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li + li {
+    margin-top: 10px;
+}
+body {
+    font-family: Lato;
+    text-align: center;
+    font-weight: bold;
+}
+hr {
+    margin-bottom: 27px;
+}
+h1 {
+    color: #0F3489;
+    font-size: 44px;
+    font-weight: bold;
+}
