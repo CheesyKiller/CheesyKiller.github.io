@@ -8,39 +8,47 @@ button {
     border-style: solid;
     color: #0F3489;
 }
+
 .vButton {
     width: 50%;
 }
+
 .navAlign {
     align-items: stretch;
     margin: 0;
     margin-right: 10px;
     margin-top: -4px;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: Lato;
     text-align: center;
     font-weight: bold;
-    background-color: #d8ebfe;
+    background-color: #acacac;
 }
+
 hr {
     margin: 0;
     margin-bottom: 27px;
 }
+
 h1 {
     text-align: center;
     color: #0F3489;
     font-size: 44px;
     font-weight: bold;
 }
+
 p {
     text-align: left;
 }
+
 .parent-element {
     display: inline-flex;
     justify-content: flex-end;
@@ -49,6 +57,7 @@ p {
     margin-top: 4px;
     margin-bottom: 12px;
 }
+
 .nav-parent-element {
     display: inline-flex;
     justify-content: flex-end;
@@ -57,6 +66,7 @@ p {
     margin-top: 4px;
     margin-bottom: 12px;
 }
+
 p {
     font-size: 26px;
 }

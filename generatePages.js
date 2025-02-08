@@ -7,6 +7,8 @@ const projectsPath = path.join(__dirname, 'projects.json');
 // Output directory for generated HTML files
 const outputDir = path.join(__dirname, 'generated-pages');
 
+import constants from '../constants.js';
+
 // Remove all files in the output directory if it exists, then recreate it
 if (fs.existsSync(outputDir)) {
     fs.rmSync(outputDir, { recursive: true, force: true });
