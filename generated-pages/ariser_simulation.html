@@ -7,22 +7,33 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../main-style.css">
     <script type="module">
-        import strings from '../constants.js';
+        import { strings, colors } from '../constants.js';
 
         document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("resumeName").textContent = strings.resumeName + " - " + document.getElementById("resumeName").textContent;
+            document.getElementById("resumeName").textContent = strings.resumeName;
+            document.getElementById("indexButton").textContent = strings.index;
+            document.getElementById("aboutButton").textContent = strings.about;
         });
+
+        document.documentElement.style.setProperty('--button-background-color', colors.buttonBackground);
+        document.documentElement.style.setProperty('--border-color', colors.border);
+        document.documentElement.style.setProperty('--background-color', colors.background);
+        document.documentElement.style.setProperty('--important-text-color', colors.importantText);
+        document.documentElement.style.setProperty('--text-color', colors.text);
     </script>
 </head>
 <body>
-    <h1 class="nav-parent-element">
-        <div><h1 class="navAlign" style="white-space: nowrap; margin-top: -10px;" id="resumeName">ARISER Simulation</h1></div>
-        <div class="parent-element">
-            <button id="projectsButton" class="navAlign" style="margin-right: 10px;">Projects</button>
-            <button id="aboutButton" class="navAlign" style="margin-right: 3px;">About</button>
+    <div class="lock-position">
+        <div class="nav-parent-element">
+            <div><h1 class="navAlign" style="white-space: nowrap;" id="resumeName">ARISER Simulation</h1></div>
+            <div class="parent-element">
+                <button id="indexButton" class="navAlign"></button>
+                <button id="aboutButton" class="navAlign"></button>
+            </div>
         </div>
-    </h1>
-    <hr style="margin-top: -10px; margin-bottom: -2px;">
+        <hr>
+    </div>
+
     <h1>ARISER Simulation</h1>
     <hr>
 
@@ -30,10 +41,10 @@
 
     <ul id="photosList"></ul>
 
-    <hr style="margin-top: 30px;">
+    <hr style="margin-top: 0.8%;">
 
     <a href="../index.html">
-        <button class="vButton" style="text-align: center; margin-bottom: 20px;">Back To Projects</button>
+        <button class="vButton" style="text-align: center; margin-top: 0.9%; margin-bottom: 1%;">Back To Projects</button>
     </a>
 
     <script>

@@ -1,52 +1,78 @@
+/* Global Reset (optional) */
+* {
+    margin: 0;
+    padding: 0;
+    padding-top: 0.05%;
+    padding-left: 0.1%;
+    padding-right: 0.1%;
+    box-sizing: border-box;
+}
+
+/* Base styles */
+body {
+    font-family: Lato;
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--background-color);
+}
+
+/* Navigation styling */
+.lock-position {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--background-color);
+}
+
+.nav-parent-element {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navAlign {
+    align-items: stretch;
+    margin-right: 10px;
+}
+
+h1 {
+    margin: 0; /* Remove default margin */
+    text-align: center;
+    color: var(--important-text-color);
+    font-size: 44px;
+    font-weight: bold;
+}
+
+/* HR styling */
+hr {
+    margin: 0.1%; /* Remove default hr margins */
+}
+
+/* Other styles remain the same */
 button {
-    background-color: #f0f0f0;
-    border-color: #000000;
+    background-color: var(--button-background-color);
+    border-color: var(--border-color);
     font-size: 32px;
     font-family: Arial;
     font-weight: bold;
     border-radius: 5px;
     border-style: solid;
-    color: #0F3489;
+    color: var(--important-text-color);
 }
 
 .vButton {
     width: 50%;
 }
 
-.navAlign {
-    align-items: stretch;
-    margin: 0;
-    margin-right: 10px;
-    margin-top: -4px;
-}
-
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Lato;
-    text-align: center;
-    font-weight: bold;
-    background-color: #acacac;
-}
-
-hr {
-    margin: 0;
-    margin-bottom: 27px;
-}
-
-h1 {
-    text-align: center;
-    color: #0F3489;
-    font-size: 44px;
-    font-weight: bold;
 }
 
 p {
     text-align: left;
+    font-size: 26px;
 }
 
 .parent-element {
@@ -54,21 +80,6 @@ p {
     justify-content: flex-end;
     align-items: center;
     width: 100%;
-    margin-top: 4px;
-    margin-bottom: 12px;
-}
-
-.nav-parent-element {
-    display: inline-flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    margin-top: 4px;
-    margin-bottom: 12px;
-}
-
-p {
-    font-size: 26px;
 }
 
 /* Style for the photo grid */
@@ -77,17 +88,15 @@ p {
     grid-template-columns: repeat(2, 1fr); /* Two columns */
     gap: 20px; /* Space between items */
     list-style-type: none;
-    padding: 0;
 }
 
 #photosList li {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center content within each list item */
-    padding: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for effect */
     border-radius: 8px; /* Rounded corners */
-    background-color: #f0f0f0; /* White background for each item */
+    background-color: var(--button-background-color); /* White background for each item */
     border: solid;
     border-width: 2px;
 }
@@ -104,11 +113,9 @@ p {
 }
 
 #photosList img {
-    margin-top: 10px;
     width: 100%;
     height: 100%;
     object-fit: cover; /* Crop to fit within the square shape */
-    margin-bottom: 10px; /* Space between image and description */
 }
 
 /* Responsive adjustment for small screens */
@@ -120,4 +127,9 @@ p {
     .image-wrapper {
         width: 80vw; /* Larger square for smaller screens */
     }
+}
+
+hr {
+    padding-top: 0;
+    padding-bottom: 0;
 }
