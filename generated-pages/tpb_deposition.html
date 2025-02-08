@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +6,17 @@
     <title>TPB Deposition</title>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../main-style.css">
+    <script type="module">
+        import strings from '../constants.js';
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("resumeName").textContent = strings.resumeName + " - " + document.getElementById("resumeName").textContent;
+        });
+    </script>
 </head>
 <body>
     <h1 class="nav-parent-element">
-        <div><h1 class="navAlign" style="white-space: nowrap; margin-top: -10px;">Vincent Hsu</h1></div>
+        <div><h1 class="navAlign" style="white-space: nowrap; margin-top: -10px;" id="resumeName">TPB Deposition</h1></div>
         <div class="parent-element">
             <button id="projectsButton" class="navAlign" style="margin-right: 10px;">Projects</button>
             <button id="aboutButton" class="navAlign" style="margin-right: 3px;">About</button>
@@ -31,43 +37,35 @@
     </a>
 
     <script>
-        // Navigation button functionality
         document.getElementById("projectsButton").onclick = () => window.location.href = `../index.html`;
         document.getElementById("aboutButton").onclick = () => window.location.href = `../about.html`;
 
-        // Fetch projects.json once and use the data for both lists
+        // Inject project title dynamically into JavaScript
+        const projectTitle = document.getElementById("resumeName").textContent;
+
+        // Fetch projects.json once and use the data
         fetch('../projects.json')
             .then(response => response.json())
             .then(data => {
                 const projects = data.projects;
 
-                // Display image with src and description text for the specific project
-                const photosList = document.getElementById("photosList");
-                const specificProject = projects.find(p => p.title === "TPB Deposition");
+                // Match the project based on dynamically inserted title
+                const specificProject = projects.find(p => p.title === projectTitle);
+
                 if (specificProject && specificProject.photos) {
+                    const photosList = document.getElementById("photosList");
+                    
                     specificProject.photos.forEach(photoObj => {
-                        const [photo, description] = Object.entries(photoObj)[0]; // Get photo filename and description
+                        const [photo, description] = Object.entries(photoObj)[0]; 
 
                         const listItem = document.createElement("li");
+                        listItem.innerHTML = `
+                            <div class="image-wrapper">
+                                <img src="../images/${photo}" alt="Image of ${photo}">
+                            </div>
+                            <p>${description}</p>
+                        `;
 
-                        // Create the wrapper and image elements
-                        const wrapper = document.createElement("div");
-                        wrapper.className = 'image-wrapper';
-
-                        const image = document.createElement("img");
-                        image.src = `../images/${photo}`;
-                        image.alt = `Image of ${photo}`;
-                        
-                        // Append the image to the wrapper, then wrapper to list item
-                        wrapper.appendChild(image);
-                        listItem.appendChild(wrapper);
-
-                        // Create the description paragraph
-                        const descriptionParagraph = document.createElement("p");
-                        descriptionParagraph.textContent = description;
-
-                        // Append description and list item to the photos list
-                        listItem.appendChild(descriptionParagraph);
                         photosList.appendChild(listItem);
                     });
                 }
@@ -78,4 +76,3 @@
     </script>
 </body>
 </html>
-    

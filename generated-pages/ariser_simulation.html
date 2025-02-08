@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARISER Simulation</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../main-style.css">
+    <script type="module">
+        import strings from '../constants.js';
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("resumeName").textContent = strings.resumeName + " - " + document.getElementById("resumeName").textContent;
+        });
+    </script>
+</head>
+<body>
+    <h1 class="nav-parent-element">
+        <div><h1 class="navAlign" style="white-space: nowrap; margin-top: -10px;" id="resumeName">ARISER Simulation</h1></div>
+        <div class="parent-element">
+            <button id="projectsButton" class="navAlign" style="margin-right: 10px;">Projects</button>
+            <button id="aboutButton" class="navAlign" style="margin-right: 3px;">About</button>
+        </div>
+    </h1>
+    <hr style="margin-top: -10px; margin-bottom: -2px;">
+    <h1>ARISER Simulation</h1>
+    <hr>
+
+    <p>A simulation project using ARISER software.</p>
+
+    <ul id="photosList"></ul>
+
+    <hr style="margin-top: 30px;">
+
+    <a href="../index.html">
+        <button class="vButton" style="text-align: center; margin-bottom: 20px;">Back To Projects</button>
+    </a>
+
+    <script>
+        document.getElementById("projectsButton").onclick = () => window.location.href = `../index.html`;
+        document.getElementById("aboutButton").onclick = () => window.location.href = `../about.html`;
+
+        // Inject project title dynamically into JavaScript
+        const projectTitle = document.getElementById("resumeName").textContent;
+
+        // Fetch projects.json once and use the data
+        fetch('../projects.json')
+            .then(response => response.json())
+            .then(data => {
+                const projects = data.projects;
+
+                // Match the project based on dynamically inserted title
+                const specificProject = projects.find(p => p.title === projectTitle);
+
+                if (specificProject && specificProject.photos) {
+                    const photosList = document.getElementById("photosList");
+                    
+                    specificProject.photos.forEach(photoObj => {
+                        const [photo, description] = Object.entries(photoObj)[0]; 
+
+                        const listItem = document.createElement("li");
+                        listItem.innerHTML = `
+                            <div class="image-wrapper">
+                                <img src="../images/${photo}" alt="Image of ${photo}">
+                            </div>
+                            <p>${description}</p>
+                        `;
+
+                        photosList.appendChild(listItem);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error loading projects.json:", error);
+            });
+    </script>
+</body>
+</html>

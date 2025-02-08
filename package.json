@@ -22,6 +22,7 @@
     "mongoose": "^8.8.0"
   },
   "scripts": {
-    "build": "node generatePages.js"
+    "build": "node generatePages.js",
+    "start": "npm run build"
   }
 }
