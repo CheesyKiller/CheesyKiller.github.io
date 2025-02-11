@@ -15,40 +15,6 @@
           {"Sample3.jpg": "C"},
           {"Sample4.jpg": "D"}
         ]
-      },
-      {
-        "title": "Resistivity of Polyethylene",
-        "description": "Exploring the resistivity properties of polyethylene materials.",
-        "photos": [
-          {"Just Cheese.png": "A"},
-          {"Just Cheese-Pixel.png": "B"}
-        ]
-      },
-      {
-        "title": "Resistivity of Polyethylene",
-        "description": "Exploring the resistivity properties of polyethylene materials.",
-        "photos": [
-          {"Just Cheese.png": "A"},
-          {"Just Cheese-Pixel.png": "B"}
-        ]
-      },
-      {
-        "title": "Resistivity of Polyethylene",
-        "description": "Exploring the resistivity properties of polyethylene materials.",
-        "photos": [
-          {"Just Cheese.png": "A"},
-          {"Just Cheese-Pixel.png": "B"}
-        ]
-      },
-      {
-        "title": "ARISER Simulation",
-        "description": "A simulation project using ARISER software.",
-        "photos": []
-      },
-      {
-        "title": "TPB Deposition",
-        "description": "A research project on TPB deposition methods.",
-        "photos": []
       }
     ]
   }
