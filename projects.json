@@ -2,13 +2,13 @@
     "projects": [
       {
         "title": "This Website!",
-        "description": "\tWelcome! This page will explain the development process for the website and the future plans I have for it. The plan to dedicate myself to making a personal website stemmed from my friend requesting a resume website. I figured it would be a fun adventure and broaden my horizons in my position at Audible as a Full Stack Software Development Engineer.\n\tThat led me to begin working on my own attempt! I’m trying to do as much of the coding myself as I can (within reason). For example, creating a JavaScript file that formats and provides the headers to all of the project pages dynamically!\n\tMy goals for this website are to hopefully obtain my git commits for each project and append them onto the bottom of each page after the descriptions. Eventually I’d like to also not have to directly append everything manually and that the additional information is loaded directly to the site via some API.",
+        "description": "GitHub: <a href=\"https://github.com/CheesyKiller/CheesyKiller.github.io\">Modular Mayhem</a></p><br><p style=\"text-indent: 3%;\">This page will explain the development process for the website and the future plans I have for it. The plan to dedicate myself to making a personal website stemmed from my friend requesting a resume website. I figured it would be a fun adventure and broaden my horizons in my position at Audible as a Full Stack Software Development Engineer.</p><br><p style=\"text-indent: 3%;\">That led me to begin working on my own attempt! I’m trying to do as much of the coding myself as I can (within reason). For example, creating a JavaScript file that formats and provides the headers to all of the project pages dynamically!</p><br><p style=\"text-indent: 3%;\">My goals for this website are to hopefully obtain my git commits for each project and append them onto the bottom of each page after the descriptions. Eventually, I’d like to also not have to directly append everything manually and that the additional information is loaded directly to the site via some API.",
         "photos": [
           {"Just Cheese-Pixel.png": "There was an error loading the image."}
         ]
       },{
         "title": "Modular Mayhem",
-        "description": "This will detail the Modular Mayhem project. Where I conducted an attempt to convert the OpenGL, GLAD, and KHR, into C++20 modules. More explicit detail is inside the github repository of the same name. (Link will be provided soon!)",
+        "description": "GitHub: <a href=\"https://github.com/CheesyKiller/ModularMayhem\">Modular Mayhem</a></p><br><p style=\"text-indent: 3%;\">This will detail the Modular Mayhem project. Where I conducted an attempt to convert the OpenGL, GLAD, and KHR, into C++20 modules. More explicit detail is inside the github repository of the same name.",
         "photos": [
           {"Sample1.jpg": "A"},
           {"Sample2.jpg": "B"},
