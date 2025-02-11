@@ -1,4 +1,5 @@
 export const strings = {
+    username: "CheesyKiller",
     resumeName: "Jacob Abts",
     index: "Projects",
     about: "Resume"
