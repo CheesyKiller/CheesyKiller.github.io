@@ -8,7 +8,7 @@
         ]
       },{
         "title": "Modular Mayhem",
-        "description": "A study on heat convection in resistors immersed in liquid nitrogen.",
+        "description": "This will detail the Modular Mayhem project. Where I conducted an attempt to convert the OpenGL, GLAD, and KHR, into C++20 modules. More explicit detail is inside the github repository of the same name. (Link will be provided soon!)",
         "photos": [
           {"Sample1.jpg": "A"},
           {"Sample2.jpg": "B"},
