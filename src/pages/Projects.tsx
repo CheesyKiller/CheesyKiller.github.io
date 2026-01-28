@@ -33,6 +33,10 @@ export default function Projects({ lang }: { lang: LanguageCode }) {
   const [hideForks, setHideForks] = useState(true);
   const [hideArchived, setHideArchived] = useState(true);
 
+  if (lang) {
+    // Not fixed yet
+  }
+
   useEffect(() => {
     let cancelled = false;
 
