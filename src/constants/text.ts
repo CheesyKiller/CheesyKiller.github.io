@@ -1,4 +1,4 @@
-export const FULL_NAME = "First Last";
+export const FULL_NAME = "Jacob Abts";
 
 export const USERNAME = {
     GITHUB: "CheesyKiller"
