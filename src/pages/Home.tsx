@@ -1,17 +1,18 @@
-export default function Home() {
+import type { LanguageCode } from "../utility/language-helper";
+
+import { ABOUT_TEXT, FOCUS_LIST } from "../constants/pages/Home";
+
+export default function Home({ lang }: { lang: LanguageCode }) {
   return (
     <section>
-      <h2>About</h2>
-      <p>
-        This is my resume site built with React + TypeScript, deployed on GitHub
-        Pages.
-      </p>
+      <h2>{ABOUT_TEXT.HEADER[lang]}</h2>
+      <p>{ABOUT_TEXT.TEXT[lang]}</p>
 
-      <h3>Focus</h3>
+      <h3>{FOCUS_LIST.HEADER[lang]}</h3>
       <ul>
-        <li>Frontend: React, TypeScript</li>
-        <li>Deployment: GitHub Pages</li>
-        <li>Next: Projects JSON + three.js</li>
+        {FOCUS_LIST.ITEMS.map((item) => (
+          <li key={item.EN}>{item[lang]}</li>
+        ))}
       </ul>
     </section>
   );

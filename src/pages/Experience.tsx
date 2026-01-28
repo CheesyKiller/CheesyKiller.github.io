@@ -1,14 +1,18 @@
-export default function Experience() {
+import type { LanguageCode } from "../utility/language-helper";
+
+import { EXPERIENCE_TEXT, SKILLS_LIST } from "../constants/pages/Experience";
+
+export default function Experience({ lang }: { lang: LanguageCode }) {
   return (
     <section>
-      <h2>Experience</h2>
-      <p>Add your work history, skills, and highlights here.</p>
+      <h2>{EXPERIENCE_TEXT.HEADER[lang]}</h2>
+      <p>{EXPERIENCE_TEXT.TEXT[lang]}</p>
 
-      <h3>Skills</h3>
+      <h3>{SKILLS_LIST.HEADER[lang]}</h3>
       <ul>
-        <li>TypeScript</li>
-        <li>React</li>
-        <li>Vite</li>
+        {SKILLS_LIST.ITEMS.map((item) => (
+          <li key={item.EN}>{item[lang]}</li>
+        ))}
       </ul>
     </section>
   );

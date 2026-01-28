@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 
+import { readCache, writeCache, isFresh } from "../utility/github-cache";
+import type { LanguageCode } from "../utility/language-helper";
+
+import { USERNAME } from "../constants/text";
+
 type GitHubRepo = {
   id: number;
   name: string;
@@ -17,14 +22,14 @@ type GitHubRepo = {
   private: boolean;
 };
 
-const USERNAME = "CheesyKiller";
+const CACHE_KEY = `gh_repos_${USERNAME.GITHUB}_v1`;
+const CACHE_TTL_MS = 6 * 360 * 1000;
 
-export default function Projects() {
+export default function Projects({ lang }: { lang: LanguageCode }) {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // simple UI filters
   const [hideForks, setHideForks] = useState(true);
   const [hideArchived, setHideArchived] = useState(true);
 
@@ -35,11 +40,22 @@ export default function Projects() {
       setLoading(true);
       setError(null);
 
+      const cached = readCache<GitHubRepo[]>(CACHE_KEY);
+      
+      if (cached?.value?.length) {
+        setRepos(cached.value);
+        if (isFresh(cached.fetchedAt, CACHE_TTL_MS)) {
+          setLoading(false);
+          return;
+        }
+      }
+
+      setLoading(true);
+
       try {
-        // Add Accept header so topics can be returned when available.
         const res = await fetch(
-          `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`,
-          { headers: { Accept: "application/vnd.github+json" } }
+          `https://api.github.com/users/${USERNAME.GITHUB}/repos?per_page=100&sort=updated`,
+          { headers: { Accept: "application/vnd.github+json" }}
         );
 
         if (!res.ok) {
@@ -48,7 +64,10 @@ export default function Projects() {
 
         const data = (await res.json()) as GitHubRepo[];
 
-        if (!cancelled) setRepos(data);
+        if (!cancelled) {
+          setRepos(data);
+          writeCache(CACHE_KEY, data);
+        }
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : "Unknown error");
       } finally {
@@ -93,7 +112,7 @@ export default function Projects() {
           Hide archived
         </label>
 
-        <a href={`https://github.com/${USERNAME}`} target="_blank" rel="noreferrer">
+        <a href={`https://github.com/${USERNAME.GITHUB}`} target="_blank" rel="noreferrer">
           View GitHub profile
         </a>
       </div>
@@ -116,8 +135,8 @@ export default function Projects() {
             {repo.description && <p style={{ margin: "0.5rem 0" }}>{repo.description}</p>}
 
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", opacity: 0.8 }}>
-              {repo.language && <span>{repo.language}</span>}
-              <span>Updated {new Date(repo.updated_at).toLocaleDateString()}</span>
+              {repo.language && <span>Primary Language: {repo.language}</span>}
+              <span>Last Updated: {new Date(repo.updated_at).toLocaleDateString()}</span>
               {repo.homepage && (
                 <a href={repo.homepage} target="_blank" rel="noreferrer">
                   Live

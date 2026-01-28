@@ -1,40 +1,35 @@
-import { NavLink, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { NavLink, Routes, Route, useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./App.css"
-import { PAGE_LIST } from "./constants/routes";
 
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Experience from "./pages/Experience";
 import NotFound from "./pages/NotFound";
 
-const ROUTE_COMPONENTS = {
-  [PAGE_LIST.HOME.ROUTE]: <Home />,
-  [PAGE_LIST.PROJECTS.ROUTE]: <Projects />,
-  [PAGE_LIST.EXPERIENCE.ROUTE]: <Experience />,
-} as const;
+import { type LanguageCode, SupportedLanguages, getInitialLang } from "./utility/language-helper";
 
-function Header() {
+import { PAGE_LIST } from "./constants/routes";
+import { FULL_NAME, USERNAME } from "./constants/text";
+
+function Header({ lang }: { lang: LanguageCode }) {
   const location = useLocation();
 
   const page = Object.values(PAGE_LIST).find(
     (p) => p.ROUTE === location.pathname
   );
 
-  const title = page?.TITLE ?? "Resume Page Not Found";
+  const title = page?.TITLE[lang] ?? "Resume Page Not Found";
 
   useEffect(() => {
-    document.title = `Jacob Abts - ${title}`;
+    document.title = `${FULL_NAME} - ${title}`;
   }, [title]);
 
   return (
     <header className="header">
-      <h1 style={{ margin: 0 }}>Jacob Abts - {title}</h1>
+      <h1 style={{ margin: 0 }}>{FULL_NAME} - {title}</h1>
 
       <nav className="nav">
-        {Object.values(PAGE_LIST).map((p) => (
-          <NavLink key={p.ROUTE} to={p.ROUTE} end={p.ROUTE === "/"}>
-            {p.NAV_TITLE}
+        {Object.values(PAGE_LIST).map(({ ROUTE, NAV_TITLE }) => (
+          <NavLink key={ROUTE} to={ROUTE} end={ROUTE === "/"}>
+            {NAV_TITLE[lang]}
           </NavLink>
         ))}
       </nav>
@@ -43,22 +38,35 @@ function Header() {
 }
 
 export default function App() {
+  const [lang, setLang] = useState<LanguageCode>(getInitialLang());
+  const githubPath = `https://github.com/${USERNAME.GITHUB}`;
+
   return (
     <div className="layout">
-      <Header/>
+      <Header lang={lang} />
 
       <main>
         <Routes>
-          {Object.entries(ROUTE_COMPONENTS).map(([path, element]) => (
-            <Route key={path} path={path} element={element} />
+          {Object.values(PAGE_LIST).map(({ ROUTE, ELEMENT }) => (
+            <Route key={ROUTE} path={ROUTE} element={<ELEMENT lang={lang}/>} />
           ))}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
-      <footer>
-        Jacob Abts | <a href="https://github.com/CheesyKiller">GitHub</a>
+      <footer className="footer">
+        <div className="footer-left">
+          {FULL_NAME} | <Link to={githubPath}>GitHub</Link>
+        </div>
+
+        <div className="lang-switch">
+          {Object.values(SupportedLanguages).map((l) => (
+            <button key={l.CODE} onClick={() => setLang(l.CODE)}>
+              {l.LABEL}
+            </button>
+          ))}
+        </div>
       </footer>
     </div>
   )

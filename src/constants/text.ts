@@ -1,3 +1,5 @@
-export const SITE_NAME = "CheesyKiller";
+export const FULL_NAME = "First Last";
 
-export const FOOTER_TEXT = "Built with React + TypeScript";
+export const USERNAME = {
+    GITHUB: "CheesyKiller"
+};
