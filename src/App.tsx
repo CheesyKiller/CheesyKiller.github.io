@@ -28,7 +28,7 @@ function Header({ lang }: { lang: LanguageCode }) {
 
       <nav className="nav">
         {Object.values(PAGE_LIST).map(({ ROUTE, NAV_TITLE }) => (
-          <NavLink key={ROUTE} to={ROUTE} end={ROUTE === "/"}>
+          <NavLink key={ROUTE} to={ROUTE} end={ROUTE === "/"} className="nav-button">
             {NAV_TITLE[lang]}
           </NavLink>
         ))}

@@ -4,7 +4,8 @@ export const Kind = {
   HEADER: "Header",
   LIST: "List",
   LISTOF: "ListOf",
-  PARAGRAPH: "Paragraph"
+  PARAGRAPH: "Paragraph",
+  DATE: "Date"
 } as const;
 
 export type Header = {
@@ -24,7 +25,15 @@ export type List = {
   HEADER?: Header;
 };
 
-export type RawHTMLGroup = Paragraph | List | Header;
+export type FlexDate = {
+  KIND: typeof Kind.DATE;
+  DAY: number;
+  MONTH: number;
+  YEAR: number;
+  TITLE?: Translations;
+};
+
+export type RawHTMLGroup = FlexDate | Paragraph | List | Header;
 
 export type ListOf = {
   KIND: typeof Kind.LISTOF;
@@ -62,6 +71,21 @@ export function createList(
     KIND: Kind.LIST,
     ITEMS,
     HEADER
+  };
+}
+
+export function createFlexDate(
+  DAY: number,
+  MONTH: number,
+  YEAR: number,
+  TITLE?: Translations
+): FlexDate {
+  return {
+    KIND: Kind.DATE,
+    DAY,
+    MONTH,
+    YEAR,
+    TITLE
   };
 }
 
@@ -118,6 +142,43 @@ function printList(def: List, size: number, lang: LanguageCode, indentSize: numb
   );
 }
 
+function formatDate(
+  date: FlexDate,
+  lang: LanguageCode
+): string {
+  const { YEAR, MONTH, DAY } = date;
+
+  if (lang === "JA") {
+    return `${YEAR}年${MONTH}月${DAY}日`;
+  }
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+
+  const monthName = monthNames[MONTH - 1];
+  return `${monthName} ${DAY}, ${YEAR}`;
+}
+
+function printFlexDate(def: FlexDate, lang: LanguageCode, indentSize: number) {
+  return (
+    <section>
+      <div style={{ paddingLeft: `${indentSize}rem`}}>
+        {def.TITLE ? (
+          <>
+            <span>
+              {def.TITLE[lang] ?? def.TITLE.EN}
+            </span>
+            {": "}
+          </>
+        ) : null}
+        {formatDate(def, lang)}
+      </div>
+    </section>
+  );
+}
+
 function printListOf(def: ListOf, size: number, lang: LanguageCode, indentSize: number) {
   return (
     <section>
@@ -150,5 +211,7 @@ export function print(lang: LanguageCode, def?: HTMLGroup, size?: number, indent
       return printListOf(def, size, lang, indentSize);
     case Kind.HEADER:
       return printHeader(def, size, lang, indentSize);
+    case Kind.DATE:
+      return printFlexDate(def, lang, indentSize);
   }
 }
