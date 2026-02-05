@@ -7,7 +7,7 @@ import NotFound from "./pages/NotFound";
 import { type LanguageCode, SupportedLanguages, getInitialLang } from "./utility/language-helper";
 
 import { PAGE_LIST } from "./constants/routes";
-import { FULL_NAME, USERNAME } from "./constants/text";
+import { FULL_NAME, RESUME_PAGE_NOT_FOUND_TEXT, USERNAME } from "./constants/text";
 
 function Header({ lang }: { lang: LanguageCode }) {
   const location = useLocation();
@@ -16,7 +16,7 @@ function Header({ lang }: { lang: LanguageCode }) {
     (p) => p.ROUTE === location.pathname
   );
 
-  const title = page?.TITLE[lang] ?? "Resume Page Not Found";
+  const title = page?.TITLE[lang] ?? RESUME_PAGE_NOT_FOUND_TEXT[lang];
 
   useEffect(() => {
     document.title = `${FULL_NAME} - ${title}`;
@@ -51,7 +51,7 @@ export default function App() {
             <Route key={ROUTE} path={ROUTE} element={<ELEMENT lang={lang}/>} />
           ))}
 
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound lang={lang}/>} />
         </Routes>
       </main>
 
