@@ -1,0 +1,23 @@
+{
+  "NAME": {
+    "EN": "Resume Website",
+    "JA": "Vulkan レンダリングエンジン"
+  },
+  "DESCRIPTION": {
+    "EN": "This is my resume site built with React + TypeScript, deployed on GitHub Pages.",
+    "JA": "本サイトは、React と TypeScript を用いて構築した私の職務経歴サイトで、GitHub Pages 上にデプロイしています。本サイトは英語から日本語へ翻訳しています。翻訳上の不備がありましたらご容赦ください。"
+  },
+  "DATE_OF_LAST_EDIT": {
+    "DAY": 5,
+    "MONTH": 2,
+    "YEAR": 2026
+  },
+  "PROJECT_LANGUAGES": [{
+    "EN": "Frontend: React, TypeScript",
+    "JA": "React"
+  },
+  {
+    "EN": "Deployment: GitHub Pages",
+    "JA": "TypeScript"
+  }]
+}
