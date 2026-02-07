@@ -29,3 +29,13 @@ export const FORKS_TEXT = {
     EN: "Forks",
     JA: "フォーク"
 }
+
+export const LOADING_REPOS_TEXT = {
+    EN: "Loading repos…",
+    JA: "リポジトリを読み込み中…"
+}
+
+export const LOADING_PROJECT_METADATA_TEXT = {
+    EN: "Loading project metadata…",
+    JA: "プロジェクトのメタデータを読み込み中…"
+}

@@ -5,7 +5,7 @@ import type { LanguageCode, Translations } from "../utility/language-helper";
 import { createFlexDate, createList, print } from "../utility/html-generation-parseing";
 
 import { USERNAME } from "../constants/text";
-import { FORKS_TEXT, HIDE_ARCHIVED_TEXT, HIDE_FORKS_TEXT, LAST_EDITED_TEXT, PROJECTS_TITLE, VIEW_GITHUB_TEXT } from "../constants/pages/Projects";
+import { FORKS_TEXT, HIDE_ARCHIVED_TEXT, HIDE_FORKS_TEXT, LAST_EDITED_TEXT, LOADING_PROJECT_METADATA_TEXT, LOADING_REPOS_TEXT, PROJECTS_TITLE, VIEW_GITHUB_TEXT } from "../constants/pages/Projects";
 
 type GitHubRepo = {
   id: number;
@@ -45,7 +45,7 @@ function fallbackProjectJson(repo: GitHubRepo): ProjectJson {
     DATE_OF_LAST_EDIT: {
       DAY: d.getDate(),
       MONTH: d.getMonth() + 1,
-      YEAR: d.getFullYear(),
+      YEAR: d.getFullYear()
     },
     PROJECT_LANGUAGES: [
       { EN: repo.language ?? "Unknown", JA: repo.language ?? "Unknown" },
@@ -259,9 +259,9 @@ export default function Projects({ lang }: { lang: LanguageCode }) {
 
       <br/>
 
-      {loading && <p>Loading repos…</p>}
+      {loading && <p>{LOADING_REPOS_TEXT[lang]}</p>}
       {error && <p style={{ color: "salmon" }}>{error}</p>}
-      {metaLoading && !loading && <p>Loading project metadata…</p>}
+      {metaLoading && !loading && <p>{LOADING_PROJECT_METADATA_TEXT[lang]}</p>}
 
       <div style={{ display: "grid", gap: "1rem", marginTop: "1rem" }}>
         {sortedProjects.map((project) => {

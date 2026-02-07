@@ -7,7 +7,7 @@ import NotFound from "./pages/NotFound";
 import { type LanguageCode, SupportedLanguages, getInitialLang } from "./utility/language-helper";
 
 import { PAGE_LIST } from "./constants/routes";
-import { FULL_NAME, RESUME_PAGE_NOT_FOUND_TEXT, USERNAME } from "./constants/text";
+import { FULL_NAME, GITHUB_TEXT, RESUME_PAGE_NOT_FOUND_TEXT, USERNAME } from "./constants/text";
 
 function Header({ lang }: { lang: LanguageCode }) {
   const location = useLocation();
@@ -38,8 +38,23 @@ function Header({ lang }: { lang: LanguageCode }) {
 }
 
 export default function App() {
-  const [lang, setLang] = useState<LanguageCode>(getInitialLang());
+  const [lang, setLang] = useState<LanguageCode>(getInitialLang);
   const githubPath = `https://github.com/${USERNAME.GITHUB}`;
+
+  useEffect(() => {
+    localStorage.setItem("lang", lang);
+  }, [lang]);
+
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key === "lang" && e.newValue) {
+        setLang(e.newValue as LanguageCode);
+      }
+    };
+
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, []);
 
   return (
     <div className="layout">
@@ -57,7 +72,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="footer-left">
-          {FULL_NAME} | <Link to={githubPath}>GitHub</Link>
+          {FULL_NAME} | <Link to={githubPath}>{GITHUB_TEXT[lang]}</Link>
         </div>
 
         <div className="lang-switch">
